@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            margin: 50px auto;
+            width: 220px;
+        }
+        #box1,#box2,#box3,#box4,#box5,#box6 {
+            margin: 10px;
+            overflow: hidden;
+        }
+        #box1,#box3,#box5 {
+            width: 220px;
+            height: 20px;
+            overflow: hidden;
+            float: left;
+        }
+        #box1 div,#box3 div,#box5 div {
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            float: left;
+            margin-right: 10px;
+            background: gray;
+        }
+        #box2,#box4,#box6 {
+            width: 220px;
+            height: 100px;
+            overflow: hidden;
+            float: left;
+        }
+        #box2 div,#box4 div,#box6 div {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            float: left;
+            margin-right: 10px;
+            background: #cccccc;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="box1">
+            <div style="background:red;">标题一</div>
+            <div>标题二</div>
+            <div>标题三</div>
+        </div>
+        <div id="box2">
+            <div style="display: block">内容一</div>
+            <div>内容二</div>
+            <div>内容三</div>
+        </div>
+        <div id="box3">
+            <div style="background:red;">标题一</div>
+            <div>标题二</div>
+            <div>标题三</div>
+        </div>
+        <div id="box4">
+            <div style="display: block">内容一</div>
+            <div>内容二</div>
+            <div>内容三</div>
+        </div>
+        <div id="box5">
+            <div style="background:red;">标题一</div>
+            <div>标题二</div>
+            <div>标题三</div>
+        </div>
+        <div id="box6">
+            <div style="display: block">内容一</div>
+            <div>内容二</div>
+            <div>内容三</div>
+        </div>
+    </div>
+</body>
+<script src="http://www.qstheory.cn/n5/h5boot/jquery.min.js"></script>
+<script type="text/javascript">
+    var oBox1=$("#box1 div");
+    var oBox2=$("#box2 div");
+    oBox1.on("click",function () {
+        $(this).css("background","red");
+        $(this).siblings().css("background","#cccccc");
+        index1=$(this).index();
+        oBox2.each(function () {
+            oBox2.eq(index1).css("display","block");
+            oBox2.eq(index1).siblings().css("display","none");
+        })
+    });
+
+    var oBox3=document.getElementById("box3");
+    var oDiv1=oBox3.getElementsByTagName("div");
+    var oBox4=document.getElementById("box4");
+    var oDiv2=oBox4.getElementsByTagName("div");
+    for (var i=0;i<oDiv1.length;i++){
+        oDiv1[i].index=i;
+        oDiv1[i].onclick=move;
+    }
+    function move() {
+        for (var j=0;j<oDiv2.length;j++) {
+            oDiv1[j].style.backgroundColor="gray";
+            oDiv2[j].style.display="none";
+        }
+        this.style.backgroundColor="red";
+        oDiv2[this.index].style.display="block";
+    }
+
+    var oBox5=document.getElementById("box5");
+    var oDiv3=oBox5.getElementsByTagName("div");
+    var oBox6=document.getElementById("box6");
+    var oDiv4=oBox6.getElementsByTagName("div");
+    var lastIndex=0;
+    for (var k=0;k<oDiv3.length;k++){
+        oDiv3[k].index=k;
+        oDiv3[k].onclick=function () {
+            oDiv3[lastIndex].style.backgroundColor="gray";
+            oDiv4[lastIndex].style.display="none";
+            this.style.backgroundColor="red";
+            oDiv4[this.index].style.display="block";
+            lastIndex=this.index;
+        }
+    }
+</script>
+</html>
