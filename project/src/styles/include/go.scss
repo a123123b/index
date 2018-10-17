@@ -1,0 +1,17 @@
+﻿.go {
+  float: right;
+  margin-top: 45px;
+  .search {
+    height: 30px;
+    border-style: none;
+    font-size: 14px;
+    &:focus{
+      outline:none;
+    }
+  }
+  .search_pic {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}

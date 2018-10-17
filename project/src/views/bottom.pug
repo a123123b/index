@@ -1,0 +1,85 @@
+script(src="http://www.qstheory.cn/n5/h5boot/jquery.min.js")
+script(src="http://www.qstheory.cn/n7/js/swiper.min.js")
+script(src="http://www.qstheory.cn/n5/js/hqwg/pgwmenu.min.js")
+script(src="http://www.qstheory.cn/n5/h5boot/bootstrap.min.js")
+script.
+    //防嵌帧
+    try {
+        top.location.hostname;
+        if (top.location.hostname != window.location.hostname) {
+            top.location.href = window.location.href;
+        }
+    }
+    catch (e) {
+        top.location.href = window.location.href;
+    }
+    $(function () {
+        //reset rem
+        function setbaseFont() {
+            var w_width = $(window).width();
+            var baseFontSize = w_width / 10;
+            $('html').css('font-size', baseFontSize + 'px');
+        }
+
+        setbaseFont();
+        $(window).on('resize', function (e) {
+            setbaseFont();
+        });
+        //轮播图
+        var mySwiper = new Swiper('.pic', {
+            autoplay: 3000,
+            speed: 500,
+            parallax: true,
+            paginationClickable: true,
+            pagination: '.sw_btn',
+            preloadImages: false,
+            lazyLoading: true,
+            loop: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev'
+        });
+        var mySwiper1 = $('.pic');
+        mySwiper1.mouseenter(function () {
+            mySwiper.stopAutoplay();
+        }).mouseleave(function () {
+            mySwiper.startAutoplay();
+        });
+        //小轮播图
+        var mySwiper2 = new Swiper('.show_box', {
+            speed: 500,
+            parallax: true,
+            paginationClickable: true,
+            preloadImages: false,
+            lazyLoading: true,
+            loop: true,
+            nextButton: '.sw_right',
+            prevButton: '.sw_left',
+            slidesPerView: 4,
+            spaceBetween: 30,
+            breakpoints: {
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                }
+            }
+        });
+        //导航响应式
+        $('.pd_top').pgwMenu({
+            mainClassName: 'pd_top',
+            dropDownLabel: '导航',
+            viewMoreLabel: '更多',
+            viewMoreMaxWidth: 100
+        });
+    });

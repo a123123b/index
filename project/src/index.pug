@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        include views/head
+    body
+        .container
+            .row
+                .col-md-12
+                    include views/header
+                .col-md-4
+                    include views/logo
+                .col-md-3.col-md-offset-5.display_none
+                    include views/go
+                .col-md-12
+                    .line
+                .col-sm-8
+                    include views/pic
+                .col-sm-4.col-xs-6
+                    include views/pic_3
+                .col-sm-4.col-xs-6
+                    include views/pic_3
+            .row
+                .col-sm-12
+                    include views/series
+            .row
+                .col-md-8
+                    include views/foot_left
+                .col-md-4.col-sm-6
+                    include views/foot_box1
+                .col-md-4.col-sm-6
+                    include views/foot_box2
+        .footer
+            include views/footer
+    include views/bottom
